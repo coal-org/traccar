@@ -17,6 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Compilar el proyecto usando Gradle
+                 echo 'Build...'
                 sh "./gradlew assemble"
             }
         }
@@ -24,6 +25,7 @@ pipeline {
         stage('Tests') {
             steps {
                 // Ejecutar pruebas (puedes modificar esto según sea necesario)
+                 echo 'Test...'
                 sh "./gradlew test"
             }
         }
@@ -31,6 +33,7 @@ pipeline {
         stage('Archive') {
             steps {
                 // Archivar artefactos como el JAR compilado
+                echo 'Artifacts...'
                 archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
                 
             }
@@ -39,9 +42,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Mover los archivos compilados a la ruta correcta
-                sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/target/* /opt/traccar/
-                sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/debug.xml /opt/traccar/conf/
-                sudo systemctl restart traccar
+                echo 'Deploy backend...'
+                sh  '''
+                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/target/* /opt/traccar/
+                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/debug.xml /opt/traccar/conf/
+                    sudo systemctl restart traccar
+                '''
             }
         }
     }
