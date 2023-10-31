@@ -44,9 +44,7 @@ pipeline {
                 // Mover los archivos compilados a la ruta correcta
                 echo 'Deploy backend...'
                 sh  '''
-                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/target/* /opt/traccar/
-                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/debug.xml /opt/traccar/conf/
-                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/setup/* /opt/traccar/setup/
+                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/* /opt/traccar/
                     sudo systemctl restart traccar
                 '''
             }
