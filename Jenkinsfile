@@ -56,14 +56,23 @@ pipeline {
         // Definir acciones post-ejecución como limpieza, notificaciones, etc.
         always {
             // Ejecutar siempre después de las etapas
+            steps {
+                echo 'Proceso finalizado...'
+            }
         }
 
         success {
             // Ejecutar solo si el pipeline ha sido exitoso
+             steps {
+                echo 'Con éxito...' 
+            }
         }
 
         failure {
             // Ejecutar solo si el pipeline ha fallado
+            steps {
+                echo 'Con error...'
+            }
         }
     }
 }
