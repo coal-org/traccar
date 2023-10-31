@@ -34,7 +34,7 @@ pipeline {
             steps {
                 // Archivar artefactos como el JAR compilado
                 echo 'Artifacts...'
-                archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
                 
             }
         }
