@@ -39,8 +39,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Mover los archivos compilados a la ruta correcta
-                archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
-                
+                sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/target/* /opt/traccar/
+                sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/debug.xml /opt/traccar/conf/
+                sudo systemctl restart traccar
             }
         }
     }
