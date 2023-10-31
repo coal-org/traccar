@@ -46,6 +46,7 @@ pipeline {
                 sh  '''
                     sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/target/* /opt/traccar/
                     sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/debug.xml /opt/traccar/conf/
+                    sudo cp -r -f /var/lib/jenkins/workspace/traccar-prod/setup/* /opt/traccar/setup/
                     sudo systemctl restart traccar
                 '''
             }
