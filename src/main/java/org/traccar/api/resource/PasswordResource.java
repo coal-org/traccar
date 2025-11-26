@@ -62,8 +62,8 @@ public class PasswordResource extends BaseResource {
                 new Columns.All(), new Condition.Equals("email", email)));
         if (user != null) {
             var velocityContext = textTemplateFormatter.prepareContext(permissionsService.getServer(), user);
-            var fullMessage = textTemplateFormatter.formatMessage(velocityContext, "passwordReset", "full");
-            mailManager.sendMessage(user, true, fullMessage.getSubject(), fullMessage.getBody());
+            var fullMessage = textTemplateFormatter.formatMessage(velocityContext, "passwordReset", false);
+            mailManager.sendMessage(user, true, fullMessage.subject(), fullMessage.body());
         }
         return Response.ok().build();
     }
@@ -75,7 +75,7 @@ public class PasswordResource extends BaseResource {
             @FormParam("token") String token, @FormParam("password") String password)
             throws StorageException, GeneralSecurityException, IOException {
 
-        long userId = tokenManager.verifyToken(token);
+        long userId = tokenManager.verifyToken(token).getUserId();
         User user = storage.getObject(User.class, new Request(
                 new Columns.All(), new Condition.Equals("id", userId)));
         if (user != null) {
