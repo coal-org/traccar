@@ -63,13 +63,4 @@ services:
       options:
         max-size: "50m"
         max-file: "5"
-    depends_on:
-      - postgres_ref
-
-  # Referencia al PostgreSQL de shared (para depends_on)
-  postgres_ref:
-    image: postgres:17-alpine
-    container_name: traccarocra_postgres
-    network_mode: none
-    restart: "no"
-    entrypoint: ["echo", "PostgreSQL reference - use shared/docker-compose.yml"]
+    # PostgreSQL se ejecuta desde shared/docker-compose.yml

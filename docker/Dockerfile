@@ -61,7 +61,7 @@ COPY --from=builder /build/schema schema
 COPY --from=builder /build/templates templates
 
 # Copiar frontend compilado
-COPY --from=frontend-builder /frontend/modern/dist web
+COPY --from=frontend-builder /frontend/modern/build web
 
 # Crear directorios necesarios
 RUN mkdir -p conf logs data
