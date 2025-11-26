@@ -1,0 +1,75 @@
+# =============================================================================
+# Traccarocra - Ambiente de DESARROLLO
+# =============================================================================
+# COMPOSE_PROJECT_NAME=traccarocra-dev
+# =============================================================================
+
+networks:
+  traccarocra_shared:
+    external: true
+  traccarocra_dev:
+    external: true
+  webproxy:
+    external: true
+
+services:
+  app:
+    build:
+      context: ./apps/traccar
+      dockerfile: ../../Dockerfile
+    image: traccarocra:develop
+    container_name: traccarocra_dev_app
+    restart: unless-stopped
+    environment:
+      - TZ=America/Mexico_City
+    volumes:
+      - ./conf/traccar.xml:/opt/traccar/conf/traccar.xml:ro
+      - ./data:/opt/traccar/data
+      - ./logs:/opt/traccar/logs
+    networks:
+      - traccarocra_shared
+      - traccarocra_dev
+      - webproxy
+    ports:
+      # Protocolos GPS - TCP (expuestos al host)
+      - "5001:5001"    # gps103
+      - "5002:5002"    # tk103
+      - "5003:5003"    # gt06
+      - "5004:5004"    # h02
+      - "5005:5005"    # teltonika
+      - "5006:5006"    # gl200
+      - "5007:5007"    # watch
+      - "5008:5008"    # suntech
+      - "5009:5009"    # t55
+      - "5010:5010"    # meitrack
+      - "5011:5011"    # ruptela
+      - "5012:5012"    # atrack
+      - "5013:5013"    # wialon
+      - "5014:5014"    # huabao
+      - "5015:5015"    # jt600
+      - "5016:5016"    # osmand (Traccar Client App)
+      # Protocolos GPS - UDP (para dispositivos que lo requieran)
+      - "5001:5001/udp"
+      - "5003:5003/udp"
+      - "5005:5005/udp"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8082/api/server"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+    depends_on:
+      - postgres_ref
+
+  # Referencia al PostgreSQL de shared (para depends_on)
+  postgres_ref:
+    image: postgres:17-alpine
+    container_name: traccarocra_postgres
+    network_mode: none
+    restart: "no"
+    entrypoint: ["echo", "PostgreSQL reference - use shared/docker-compose.yml"]
