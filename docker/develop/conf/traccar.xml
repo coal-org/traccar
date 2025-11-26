@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+<properties>
+
+    <!-- =================================================================== -->
+    <!-- TRACCAROCRA - Configuración DESARROLLO                              -->
+    <!-- =================================================================== -->
+
+    <!-- Database PostgreSQL -->
+    <entry key='database.driver'>org.postgresql.Driver</entry>
+    <entry key='database.url'>jdbc:postgresql://traccarocra_postgres:5432/traccarocra_dev</entry>
+    <entry key='database.user'>postgres</entry>
+    <entry key='database.password'>CAMBIAR_PASSWORD_AQUI</entry>
+
+    <!-- Web Server -->
+    <entry key='web.port'>8082</entry>
+    <entry key='web.address'>0.0.0.0</entry>
+
+    <!-- Logging -->
+    <entry key='logger.console'>true</entry>
+    <entry key='logger.level'>info</entry>
+    <entry key='logger.file'>/opt/traccar/logs/tracker-server.log</entry>
+
+    <!-- Geocoder (OpenStreetMap - gratuito) -->
+    <entry key='geocoder.enable'>true</entry>
+    <entry key='geocoder.type'>nominatim</entry>
+    <entry key='geocoder.url'>https://nominatim.openstreetmap.org/reverse</entry>
+
+    <!-- =================================================================== -->
+    <!-- PROTOCOLOS GPS - Desarrollo (puertos 5001-5016)                     -->
+    <!-- =================================================================== -->
+
+    <!-- Protocolo 1: GPS103 (Coban TK103) -->
+    <entry key='gps103.port'>5001</entry>
+
+    <!-- Protocolo 2: TK103 -->
+    <entry key='tk103.port'>5002</entry>
+
+    <!-- Protocolo 3: GT06 (Concox) -->
+    <entry key='gt06.port'>5003</entry>
+
+    <!-- Protocolo 4: H02 (Sinotrack ST-901) -->
+    <entry key='h02.port'>5004</entry>
+
+    <!-- Protocolo 5: Teltonika (FMB120, FMB920, etc.) -->
+    <entry key='teltonika.port'>5005</entry>
+
+    <!-- Protocolo 6: GL200 (Queclink) -->
+    <entry key='gl200.port'>5006</entry>
+
+    <!-- Protocolo 7: Watch (Relojes GPS) -->
+    <entry key='watch.port'>5007</entry>
+
+    <!-- Protocolo 8: Suntech -->
+    <entry key='suntech.port'>5008</entry>
+
+    <!-- Protocolo 9: T55 (Genéricos) -->
+    <entry key='t55.port'>5009</entry>
+
+    <!-- Protocolo 10: Meitrack -->
+    <entry key='meitrack.port'>5010</entry>
+
+    <!-- Protocolo 11: Ruptela -->
+    <entry key='ruptela.port'>5011</entry>
+
+    <!-- Protocolo 12: Atrack -->
+    <entry key='atrack.port'>5012</entry>
+
+    <!-- Protocolo 13: Wialon IPS -->
+    <entry key='wialon.port'>5013</entry>
+
+    <!-- Protocolo 14: Huabao (JT/T 808) -->
+    <entry key='huabao.port'>5014</entry>
+
+    <!-- Protocolo 15: JT600 -->
+    <entry key='jt600.port'>5015</entry>
+
+    <!-- Protocolo 16: OsmAnd (Traccar Client App - Móviles) -->
+    <entry key='osmand.port'>5016</entry>
+
+</properties>

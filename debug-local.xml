@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+<properties>
+    <!-- =================================================================== -->
+    <!-- Traccar - Configuración de Desarrollo Local                         -->
+    <!-- =================================================================== -->
+    <!-- Usa PostgreSQL del servidor remoto a través de SSH tunnel           -->
+    <!-- Requiere: SSH tunnel en puerto 5439 (ver CLAUDE.md)                 -->
+    <!-- =================================================================== -->
+
+    <!-- Web Server -->
+    <entry key='web.path'>./traccar-web/build</entry>
+    <entry key='web.debug'>true</entry>
+    <entry key='web.console'>true</entry>
+
+    <!-- Database: PostgreSQL via SSH tunnel -->
+    <entry key='database.driver'>org.postgresql.Driver</entry>
+    <entry key='database.url'>jdbc:postgresql://localhost:5439/traccarocra_dev</entry>
+    <entry key='database.user'>postgres</entry>
+    <entry key='database.password'>Tr4cc4r0cr4_2024!</entry>
+
+    <!-- Geocoder -->
+    <entry key='geocoder.type'>pluscodes</entry>
+
+    <!-- Media -->
+    <entry key='media.path'>./target/media</entry>
+
+    <!-- Logging -->
+    <entry key='logger.console'>true</entry>
+    <entry key='logger.level'>all</entry>
+    <entry key='logger.queries'>false</entry>
+    <entry key='logger.fullStackTraces'>true</entry>
+
+    <!-- Protocolos GPS (mismos puertos que desarrollo remoto) -->
+    <entry key='gps103.port'>5001</entry>
+    <entry key='tk103.port'>5002</entry>
+    <entry key='gt06.port'>5003</entry>
+    <entry key='h02.port'>5004</entry>
+    <entry key='teltonika.port'>5005</entry>
+    <entry key='gl200.port'>5006</entry>
+    <entry key='watch.port'>5007</entry>
+    <entry key='suntech.port'>5008</entry>
+    <entry key='t55.port'>5009</entry>
+    <entry key='meitrack.port'>5010</entry>
+    <entry key='ruptela.port'>5011</entry>
+    <entry key='atrack.port'>5012</entry>
+    <entry key='wialon.port'>5013</entry>
+    <entry key='huabao.port'>5014</entry>
+    <entry key='jt600.port'>5015</entry>
+    <entry key='osmand.port'>5016</entry>
+
+</properties>
