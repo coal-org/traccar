@@ -37,8 +37,7 @@ WORKDIR /frontend
 RUN apk add --no-cache git && \
     git clone --depth 1 https://github.com/coal-org/traccar-web.git .
 
-# Instalar dependencias y compilar
-WORKDIR /frontend/modern
+# Instalar dependencias y compilar (estructura actualizada: raíz del proyecto)
 RUN npm ci && npm run build
 
 # -----------------------------------------------------------------------------
@@ -60,8 +59,8 @@ COPY --from=builder /build/target/lib lib
 COPY --from=builder /build/schema schema
 COPY --from=builder /build/templates templates
 
-# Copiar frontend compilado
-COPY --from=frontend-builder /frontend/modern/build web
+# Copiar frontend compilado (nueva estructura: build/ en raíz)
+COPY --from=frontend-builder /frontend/build web
 
 # Crear directorios necesarios
 RUN mkdir -p conf logs data
